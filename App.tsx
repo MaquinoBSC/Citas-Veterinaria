@@ -10,14 +10,27 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
+  Button, 
+  Pressable,
 } from 'react-native';
 
 const App = () => {
+  
+  const nuevaCitaHandler = () => {
+    console.log('pressable');
+  }
+
+
   return (
     <SafeAreaView style={ styles.container }>
       <Text style={ styles.titulo }>
         Administrador de Citas <Text style={ styles.tituloBold }>Veterinaria</Text>
       </Text>
+
+      <Button title='Nueva Cita' onPress={ () => console.log('HERE') }></Button>
+      <Pressable onPress={ () => nuevaCitaHandler() }>
+        <Text>Nueva Cita</Text>
+      </Pressable>
     </SafeAreaView>
   );
 }
