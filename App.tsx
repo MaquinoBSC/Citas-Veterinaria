@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 
 const App = () => {
-  
+
   const nuevaCitaHandler = () => {
     console.log('pressable');
   }
@@ -27,9 +27,8 @@ const App = () => {
         Administrador de Citas <Text style={ styles.tituloBold }>Veterinaria</Text>
       </Text>
 
-      <Button title='Nueva Cita' onPress={ () => console.log('HERE') }></Button>
-      <Pressable onPress={ () => nuevaCitaHandler() }>
-        <Text>Nueva Cita</Text>
+      <Pressable onPress={ () => nuevaCitaHandler() } style={ styles.btnNuevaCita }>
+        <Text style={ styles.btnNuevaCitaTexto }>Nueva Cita</Text>
       </Pressable>
     </SafeAreaView>
   );
@@ -51,6 +50,23 @@ const styles = StyleSheet.create({
   tituloBold: {
     fontWeight: '900',
     color: '#6d28d9'
+  },
+
+  btnNuevaCita: {
+    backgroundColor: '#6d28d9',
+    padding: 15,
+    marginTop: 30,
+    marginLeft: 20,
+    marginRight: 20,
+    borderRadius: 10,
+  },
+
+  btnNuevaCitaTexto: {
+    textAlign: 'center',
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '900',
+    textTransform: 'uppercase',
   }
 });
 
