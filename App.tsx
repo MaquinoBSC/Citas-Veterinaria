@@ -1,23 +1,17 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
   Text,
-  Button, 
   Pressable,
+  Modal
 } from 'react-native';
 
 const App = () => {
+  const [ modalVisible, setModalVisible ] = useState(false);
 
   const nuevaCitaHandler = () => {
-    console.log('pressable');
+    setModalVisible(!modalVisible);
   }
 
 
@@ -30,6 +24,10 @@ const App = () => {
       <Pressable onPress={ () => nuevaCitaHandler() } style={ styles.btnNuevaCita }>
         <Text style={ styles.btnNuevaCitaTexto }>Nueva Cita</Text>
       </Pressable>
+
+      <Modal animationType='fade' visible={ modalVisible }>
+        <Text>Desde Modal</Text>
+      </Modal>
     </SafeAreaView>
   );
 }
