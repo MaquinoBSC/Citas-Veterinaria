@@ -7,6 +7,8 @@ import {
   Modal
 } from 'react-native';
 
+import Formulario from './src/components/Formulario';
+
 const App = () => {
   const [ modalVisible, setModalVisible ] = useState(false);
 
@@ -25,9 +27,7 @@ const App = () => {
         <Text style={ styles.btnNuevaCitaTexto }>Nueva Cita</Text>
       </Pressable>
 
-      <Modal animationType='fade' visible={ modalVisible }>
-        <Text>Desde Modal</Text>
-      </Modal>
+      <Formulario />
     </SafeAreaView>
   );
 }
