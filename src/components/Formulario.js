@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal, Text, SafeAreaView, StyleSheet, TextInput, View, ScrollView } from 'react-native';
 
 export default function Formulario(props){
     const { modalVisible } = props;
+
+    const [ paciente, setPaciente ] = useState('');
+    const [ propietario, setPropietario ] = useState('');
+    const [ email, setEmail ] = useState('');
+    const [ telefono, setTelefono ] = useState('');
+    const [ sintomas, setSintomas ] = useState('');
 
     return (
         <Modal animationType='fade' visible={ modalVisible }>
@@ -14,10 +20,12 @@ export default function Formulario(props){
 
                     <View style={ styles.campo }>
                         <Text style={ styles.label }>Nombre Paciente</Text>
-                        <TextInput 
+                        <TextInput
                             style={ styles.input }
                             placeholder='Nombre Paciente'
                             placeholderTextColor={ '#666' }
+                            value={ paciente }
+                            onChangeText={ (text) => setPaciente(text)}
                         />
                     </View>
                     <View style={ styles.campo }>
@@ -26,6 +34,8 @@ export default function Formulario(props){
                             style={ styles.input }
                             placeholder='Nombre Propietario'
                             placeholderTextColor={ '#666' }
+                            value={ propietario }
+                            onChangeText={ (text) => setPropietario(text) }
                         />
                     </View>
                     <View style={ styles.campo }>
@@ -35,6 +45,8 @@ export default function Formulario(props){
                             placeholder='Email Propietario'
                             placeholderTextColor={ '#666' }
                             keyboardType='email-address'
+                            value={ email }
+                            onChangeText={ (text) => setEmail(text)}
                         />
                     </View>
                     <View style={ styles.campo }>
@@ -44,14 +56,21 @@ export default function Formulario(props){
                             placeholder='Teléfono Propietario'
                             placeholderTextColor={ '#666' }
                             keyboardType='number-pad'
+                            value={ telefono }
+                            onChangeText={ (text) => setTelefono(text) }
+                            maxLength={ 10 }
                         />
                     </View>
                     <View style={ styles.campo }>
                         <Text style={ styles.label }>Sintomas</Text>
                         <TextInput 
-                            style={ styles.input }
+                            style={[ styles.input, styles.sintomasInput ]}
                             placeholder='Sintomas Paciente'
                             placeholderTextColor={ '#666' }
+                            value={ sintomas }
+                            onChangeText={ (text) => setSintomas(text) }
+                            multiline={ true }
+                            numberOfLines={ 4 }
                         />
                     </View>
                 </ScrollView>
@@ -96,5 +115,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         padding: 10,
         borderRadius: 10,
+    },
+
+    sintomasInput: {
+        height: 100,
     }
 })
