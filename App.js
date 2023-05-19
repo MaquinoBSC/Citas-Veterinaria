@@ -4,10 +4,10 @@ import {
   StyleSheet,
   Text,
   Pressable,
-  Modal
 } from 'react-native';
 
 import Formulario from './src/components/Formulario';
+
 
 const App = () => {
   const [ modalVisible, setModalVisible ] = useState(false);
@@ -24,10 +24,12 @@ const App = () => {
       </Text>
 
       <Pressable onPress={ () => nuevaCitaHandler() } style={ styles.btnNuevaCita }>
-        <Text style={ styles.btnNuevaCitaTexto }>Nueva Cita</Text>
+        <Text style = { styles.btnNuevaCitaTexto }>Nueva Cita</Text>
       </Pressable>
 
-      <Formulario />
+      <Formulario 
+        modalVisible={ modalVisible }
+      />
     </SafeAreaView>
   );
 }

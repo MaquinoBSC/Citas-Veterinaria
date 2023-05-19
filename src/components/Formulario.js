@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import { Modal, Text } from 'react-native';
+import React from 'react';
+import { Modal, Text, Button, SafeAreaView } from 'react-native';
 
-export const Formulario = () => {
+export default function Formulario(props){
+    const { modalVisible } = props;
 
     return (
         <Modal animationType='fade' visible={ modalVisible }>
-            <Text>Desde Modal</Text>
+            <SafeAreaView>
+                
+            </SafeAreaView>
         </Modal>
     )
 }
-
-export default Formulario;
