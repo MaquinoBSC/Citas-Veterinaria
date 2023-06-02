@@ -13,7 +13,7 @@ const App = () => {
   const [ modalVisible, setModalVisible ] = useState(false);
 
   const nuevaCitaHandler = () => {
-    setModalVisible(!modalVisible);
+    setModalVisible(true);
   }
 
 
@@ -29,6 +29,7 @@ const App = () => {
 
       <Formulario 
         modalVisible={ modalVisible }
+        setModalVisible={ setModalVisible }
       />
     </SafeAreaView>
   );
