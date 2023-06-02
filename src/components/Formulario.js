@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Text, SafeAreaView, StyleSheet, TextInput, View, ScrollView } from 'react-native';
+import DatePicker from 'react-native-date-picker';
 
 export default function Formulario(props){
     const { modalVisible } = props;
@@ -8,6 +9,7 @@ export default function Formulario(props){
     const [ propietario, setPropietario ] = useState('');
     const [ email, setEmail ] = useState('');
     const [ telefono, setTelefono ] = useState('');
+    const [ fecha, setFecha ] = useState(new Date());
     const [ sintomas, setSintomas ] = useState('');
 
     return (
@@ -60,6 +62,16 @@ export default function Formulario(props){
                             onChangeText={ (text) => setTelefono(text) }
                             maxLength={ 10 }
                         />
+                    </View>
+                    <View style={ styles.campo }>
+                        <Text style={ styles.label }>Fecha Alta</Text>
+                        <View style={ styles.fechaContenedor }>
+                            <DatePicker
+                                date={ fecha }
+                                locale='es'
+                                onDateChange={ (date) => setFecha(date) }
+                            />
+                        </View>
                     </View>
                     <View style={ styles.campo }>
                         <Text style={ styles.label }>Sintomas</Text>
@@ -119,5 +131,10 @@ const styles = StyleSheet.create({
 
     sintomasInput: {
         height: 100,
+    },
+
+    fechaContenedor: {
+        backgroundColor: '#fff',
+        borderRadius: 10,
     }
 })
