@@ -13,7 +13,7 @@ import {
 import DatePicker from 'react-native-date-picker';
 
 export default function Formulario(props){
-    const { modalVisible, setModalVisible } = props;
+    const { modalVisible, setModalVisible, setPacientes } = props;
 
     const [ paciente, setPaciente ] = useState('');
     const [ propietario, setPropietario ] = useState('');
@@ -36,7 +36,18 @@ export default function Formulario(props){
                 ]
             )
             return
+
         }
+
+        const nuevoPaciente = {
+            paciente,
+            propietario,
+            email,
+            telefono,
+            fecha,
+            sintomas
+        };
+        setPacientes((pacientes) => [ ...pacientes, nuevoPaciente ]);
     }
 
     return (

@@ -11,6 +11,7 @@ import Formulario from './src/components/Formulario';
 
 const App = () => {
   const [ modalVisible, setModalVisible ] = useState(false);
+  const [ pacientes, setPacientes ] = useState([]);
 
   const nuevaCitaHandler = () => {
     setModalVisible(true);
@@ -30,6 +31,7 @@ const App = () => {
       <Formulario 
         modalVisible={ modalVisible }
         setModalVisible={ setModalVisible }
+        setPacientes={ setPacientes }
       />
     </SafeAreaView>
   );
