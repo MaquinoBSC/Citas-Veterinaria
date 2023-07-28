@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { Modal, Text, SafeAreaView, StyleSheet, TextInput, View, ScrollView, Pressable } from 'react-native';
+import {
+    Modal, 
+    Text, 
+    SafeAreaView, 
+    StyleSheet, 
+    TextInput, 
+    View, 
+    ScrollView, 
+    Pressable, 
+    Alert
+} from 'react-native';
 import DatePicker from 'react-native-date-picker';
 
 export default function Formulario(props){
@@ -11,6 +21,23 @@ export default function Formulario(props){
     const [ telefono, setTelefono ] = useState('');
     const [ fecha, setFecha ] = useState(new Date());
     const [ sintomas, setSintomas ] = useState('');
+
+    const handleNuevaCita = () => {
+        // Validaciones
+        if([paciente, propietario, email, telefono, fecha, sintomas].includes('')) {
+            Alert.alert(
+                'Error',
+                'Todos los campos son obligatorios',
+                [
+                    { 
+                        text: 'Entendido', 
+                        onPress: () => { console.log('El usuario entendio') }
+                    }
+                ]
+            )
+            return
+        }
+    }
 
     return (
         <Modal animationType='fade' visible={ modalVisible }>
@@ -91,7 +118,9 @@ export default function Formulario(props){
                             numberOfLines={ 4 }
                         />
                     </View>
-                    <Pressable style={ styles.btnNuevaCita }>
+                    <Pressable 
+                        style={ styles.btnNuevaCita } 
+                        onPress={ () => handleNuevaCita() }>
                         <Text style={ styles.btnNuevaCitaTexto }>Agregar Paciente</Text>
                     </Pressable>
                 </ScrollView>
