@@ -48,6 +48,13 @@ export default function Formulario(props){
             sintomas
         };
         setPacientes((pacientes) => [ ...pacientes, nuevoPaciente ]);
+        setModalVisible((mv) => !mv);
+        setPaciente('');
+        setPropietario('');
+        setEmail('');
+        setTelefono('');
+        setFecha(new Date());
+        setSintomas('');
     }
 
     return (
