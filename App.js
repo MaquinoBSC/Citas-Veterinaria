@@ -33,7 +33,8 @@ const App = () => {
       {
         pacientes.length === 0 ? 
           <Text style={ styles.noPacientes }>No hay pacientes aún</Text> : 
-          <FlatList 
+          <FlatList
+            style={ styles.listado }
             data={ pacientes }
             keyExtractor={ (item) => item.id }
             renderItem={ ({ item }) => <Paciente item={ item } /> }
@@ -88,6 +89,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 24,
     fontWeight: '800'
+  },
+
+  listado: {
+    marginTop: 50,
+    marginHorizontal: 30,
   }
 });
 
