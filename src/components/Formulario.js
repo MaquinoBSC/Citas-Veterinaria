@@ -40,6 +40,7 @@ export default function Formulario(props){
         }
 
         const nuevoPaciente = {
+            id: Date.now(),
             paciente,
             propietario,
             email,
