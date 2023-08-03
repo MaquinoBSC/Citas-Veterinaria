@@ -18,9 +18,35 @@ export default function Paciente(props) {
     }
 
     return(
-        <View>
-            <Text>{ paciente }</Text>
-            <Text>{ formatearFecha(fecha) }</Text>
+        <View style={ styles.contenedor }>
+            <Text style={ styles.label }>Paciente:</Text>
+            <Text style={ styles.texto }>{ paciente }</Text>
+            <Text style={ styles.fecha }>{ formatearFecha(fecha) }</Text>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    contenedor: {
+        backgroundColor: '#fff',
+        padding: 20,
+        borderBottomColor: '#94a3d8',
+        borderBottomWidth: 1
+    },
+
+    label: {
+        color: '#374151',
+        textTransform: 'uppercase',
+        fontWeight: '700',
+    },
+
+    texto: {
+        color: '#6d28d9',
+        fontSize: 20,
+        fontWeight: '700',
+    },
+
+    fecha: {
+        color: '#374151'
+    }
+})
