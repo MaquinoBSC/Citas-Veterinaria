@@ -2,7 +2,7 @@ import React from "react";
 import { Text, View, StyleSheet, Pressable } from 'react-native';
 
 export default function Paciente(props) {
-    const { item } = props;
+    const { item, setModalVisible, pacienteEditar } = props;
     const { paciente, fecha } = item;
 
     const formatearFecha = fecha => {
@@ -23,7 +23,13 @@ export default function Paciente(props) {
             <Text style={ styles.texto }>{ paciente }</Text>
             <Text style={ styles.fecha }>{ formatearFecha(fecha) }</Text>
             <View style={ styles.contenedorBotones }>
-                <Pressable style={ [styles.btn, styles.btnEditar] }>
+                <Pressable 
+                    style={ [styles.btn, styles.btnEditar] }
+                    onLongPress={ () => {
+                        pacienteEditar(item.id);
+                        setModalVisible(true);
+                    }}
+                >
                     <Text style={ styles.btnTexto }>Editar</Text>
                 </Pressable>
                 <Pressable style={ [styles.btn, styles.btnEliminar] }>
