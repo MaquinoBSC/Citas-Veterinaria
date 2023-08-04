@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Modal, 
     Text, 
@@ -13,14 +13,27 @@ import {
 import DatePicker from 'react-native-date-picker';
 
 export default function Formulario(props){
-    const { modalVisible, setModalVisible, setPacientes } = props;
+    const { modalVisible, setModalVisible, setPacientes, paciente: pacienteEditar } = props;
 
+    const [ id, setId ] = useState('');
     const [ paciente, setPaciente ] = useState('');
     const [ propietario, setPropietario ] = useState('');
     const [ email, setEmail ] = useState('');
     const [ telefono, setTelefono ] = useState('');
     const [ fecha, setFecha ] = useState(new Date());
     const [ sintomas, setSintomas ] = useState('');
+
+    useEffect(() => {
+        if(Object.keys(pacienteEditar).length > 0) {
+            setId(pacienteEditar.id);
+            setPaciente(pacienteEditar.paciente);
+            setPropietario(pacienteEditar.propietario);
+            setEmail(pacienteEditar.email);
+            setTelefono(pacienteEditar.telefono);
+            setFecha(pacienteEditar.fecha);
+            setSintomas(pacienteEditar.sintomas);
+        }
+    }, []);
 
     const handleNuevaCita = () => {
         // Validaciones
