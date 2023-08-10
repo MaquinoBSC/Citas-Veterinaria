@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Text,
   Pressable,
-  FlatList
+  FlatList,
+  Alert
 } from 'react-native';
 
 import Formulario from './src/components/Formulario';
@@ -19,6 +20,24 @@ const App = () => {
   const nuevaCitaHandler = () => { setModalVisible(true) }
 
   const pacienteEditar = (id) => { setPaciente(pacientes.filter((p) => p.id === id)[0]) }
+
+  const pacienteEliminar= (id) => { 
+    Alert.alert(
+      'Deseas Eliminar Paciente',
+      'Un paciente eliminado no se puede recuperar', 
+      [
+        {
+          'text': 'Cancelar',
+          'style': 'cancel' 
+        },
+        {
+          'text': 'Si, Eliminar',
+          'style': 'default',
+          'onPress': () => setPacientes(pacientes.filter((p) => p.id !== id)) 
+        }
+      ]
+    )
+  }
 
   return (
     <SafeAreaView style={ styles.container }>
@@ -37,7 +56,13 @@ const App = () => {
             style={ styles.listado }
             data={ pacientes }
             keyExtractor={ (item) => item.id }
-            renderItem={ ({ item }) => <Paciente item={ item } setModalVisible={ setModalVisible} pacienteEditar={ pacienteEditar } /> }
+            renderItem={ ({ item }) => <Paciente 
+                                          item={ item } 
+                                          setModalVisible={ setModalVisible} 
+                                          pacienteEditar={ pacienteEditar }
+                                          pacienteEliminar={ pacienteEliminar }
+                                       /> 
+                       }
           />
       }
       <Formulario 
