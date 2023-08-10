@@ -34,7 +34,7 @@ export default function Formulario(props){
             setFecha(pacienteEditar.fecha);
             setSintomas(pacienteEditar.sintomas);
         }
-    }, []);
+    }, [ pacienteEditar ]);
 
     const handleNuevaCita = () => {
         // Validaciones
@@ -100,7 +100,8 @@ export default function Formulario(props){
             <SafeAreaView style={ styles.contenido }>
                 <ScrollView>
                     <Text style={ styles.titulo }>
-                        Nueva <Text style={ styles.tituloBold }>Cita</Text>
+                        { id ? 'Editar ' : 'Nueva ' } 
+                        <Text style={ styles.tituloBold }>Cita</Text>
                     </Text>
                     <Pressable 
                         style={ styles.btnCancelar } 
@@ -177,7 +178,9 @@ export default function Formulario(props){
                     <Pressable 
                         style={ styles.btnNuevaCita } 
                         onPress={ () => handleNuevaCita() }>
-                        <Text style={ styles.btnNuevaCitaTexto }>Agregar Paciente</Text>
+                        <Text style={ styles.btnNuevaCitaTexto }>
+                            { id ? 'Guardar ' : 'Agregar '} Paciente
+                        </Text>
                     </Pressable>
                 </ScrollView>
             </SafeAreaView>
