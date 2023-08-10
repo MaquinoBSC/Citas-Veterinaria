@@ -13,7 +13,8 @@ import {
 import DatePicker from 'react-native-date-picker';
 
 export default function Formulario(props){
-    const { modalVisible, setModalVisible, setPacientes, paciente: pacienteEditar } = props;
+    const { modalVisible, setModalVisible, setPacientes } = props;
+    const { paciente: pacienteEditar, setPaciente: setPacienteEditar } = props;
 
     const [ id, setId ] = useState('');
     const [ paciente, setPaciente ] = useState('');
@@ -49,11 +50,9 @@ export default function Formulario(props){
                 ]
             )
             return
-
         }
 
         const nuevoPaciente = {
-            id: Date.now(),
             paciente,
             propietario,
             email,
@@ -61,8 +60,33 @@ export default function Formulario(props){
             fecha,
             sintomas
         };
-        setPacientes((pacientes) => [ ...pacientes, nuevoPaciente ]);
+        // Saber si es un registro o una edición
+        if(id) {
+            // Modo edición
+            nuevoPaciente.id = id;
+            setPacientes((pacientes) => pacientes.map((p) => p.id === id ? nuevoPaciente : p));
+            setPacienteEditar({});
+        }
+        else {
+            // Modo Nuevo Registro
+            nuevoPaciente.id = Date.now();
+            setPacientes((pacientes) => [ ...pacientes, nuevoPaciente ]);
+        }
+        
         setModalVisible((mv) => !mv);
+        setId('');
+        setPaciente('');
+        setPropietario('');
+        setEmail('');
+        setTelefono('');
+        setFecha(new Date());
+        setSintomas('');
+    }
+
+    const handleCancelarCita = () => {
+        setModalVisible(!modalVisible);
+        setPacienteEditar({});
+        setId('');
         setPaciente('');
         setPropietario('');
         setEmail('');
@@ -80,7 +104,7 @@ export default function Formulario(props){
                     </Text>
                     <Pressable 
                         style={ styles.btnCancelar } 
-                        onLongPress={ () => setModalVisible(!modalVisible) }
+                        onLongPress={ () => handleCancelarCita() }
                     >
                         <Text style={ styles.btnCancelarTexto }>X Cancelar</Text>
                     </Pressable>
