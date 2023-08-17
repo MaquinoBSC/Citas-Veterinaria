@@ -5,17 +5,20 @@ import {
   Text,
   Pressable,
   FlatList,
-  Alert
+  Alert,
+  Modal
 } from 'react-native';
 
 import Formulario from './src/components/Formulario';
 import Paciente from './src/components/Paciente';
+import InformacionPaciente from './src/components/InformacionPaciente';
 
 
 const App = () => {
   const [ modalVisible, setModalVisible ] = useState(false);
   const [ pacientes, setPacientes ] = useState([]);
   const [ paciente, setPaciente ] = useState({});
+  const [ modalPaciente, setModalPaciente ] = useState(false);
 
   const nuevaCitaHandler = () => { setModalVisible(true) }
 
@@ -61,6 +64,7 @@ const App = () => {
                                           setModalVisible={ setModalVisible} 
                                           pacienteEditar={ pacienteEditar }
                                           pacienteEliminar={ pacienteEliminar }
+                                          setModalPaciente={ setModalPaciente }
                                        /> 
                        }
           />
@@ -72,6 +76,13 @@ const App = () => {
         paciente={ paciente }
         setPaciente={ setPaciente }
       />
+
+      <Modal 
+        visible={ modalPaciente }
+        animationType='fade'
+      >
+        <InformacionPaciente />
+      </Modal>
     </SafeAreaView>
   );
 }
