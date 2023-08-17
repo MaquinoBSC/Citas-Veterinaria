@@ -2,7 +2,7 @@ import React from "react";
 import { Text, View, StyleSheet, Pressable } from 'react-native';
 
 export default function Paciente(props) {
-    const { item, setModalVisible, pacienteEditar, pacienteEliminar, setModalPaciente } = props;
+    const { item, setModalVisible, pacienteEditar, pacienteEliminar, setModalPaciente, setPaciente } = props;
     const { paciente, fecha, id } = item;
 
     const formatearFecha = fecha => {
@@ -17,8 +17,13 @@ export default function Paciente(props) {
         return nuevaFecha.toLocaleDateString('es-ES', opciones);
     }
 
+    const mostrarInformacionPaciente = () => {
+        setModalPaciente(true);
+        setPaciente(item);
+    }
+
     return(
-        <Pressable onLongPress={ () => setModalPaciente(true) }>
+        <Pressable onLongPress={ () => mostrarInformacionPaciente() }>
             <View style={ styles.contenedor }>
                 <Text style={ styles.label }>Paciente:</Text>
                 <Text style={ styles.texto }>{ paciente }</Text>
