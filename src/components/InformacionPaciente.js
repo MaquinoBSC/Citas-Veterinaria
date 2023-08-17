@@ -17,7 +17,9 @@ export default function InformacionPaciente(props) {
                     <Text style={ styles.btnCerrarTexto }>Cerrar X</Text>
                 </Pressable>
             </View>
-            <Text>{ paciente.paciente }</Text>
+            <View style={ styles.contenido }>
+                <Text>{ paciente.paciente }</Text>
+            </View>
         </SafeAreaView>
     )
 }
@@ -55,4 +57,20 @@ const styles = StyleSheet.create({
         fontSize: 15,
         textTransform: 'uppercase'
     },
+
+    contenido: {
+        backgroundColor: '#fff',
+        marginHorizontal: 30,
+        borderRadius: 10,
+        padding: 10,
+        height: 300,
+        shadowColor: "#097",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    }
 })
