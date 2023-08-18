@@ -85,6 +85,7 @@ const App = () => {
         <InformacionPaciente 
           paciente={ paciente }
           setModalPaciente={ setModalPaciente }
+          setPaciente={ setPaciente }
         />
       </Modal>
     </SafeAreaView>

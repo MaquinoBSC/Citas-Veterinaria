@@ -1,21 +1,10 @@
 import React from "react";
 import { Text, View, StyleSheet, Pressable } from 'react-native';
+import { formatearFecha } from '../helpers';
 
 export default function Paciente(props) {
     const { item, setModalVisible, pacienteEditar, pacienteEliminar, setModalPaciente, setPaciente } = props;
     const { paciente, fecha, id } = item;
-
-    const formatearFecha = fecha => {
-        const nuevaFecha = new Date(fecha);
-        const opciones = {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        }
-
-        return nuevaFecha.toLocaleDateString('es-ES', opciones);
-    }
 
     const mostrarInformacionPaciente = () => {
         setModalPaciente(true);
