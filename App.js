@@ -24,6 +24,8 @@ const App = () => {
 
   const pacienteEditar = (id) => { setPaciente(pacientes.filter((p) => p.id === id)[0]) }
 
+  const cerrarModal = () => { setModalVisible(false) }
+
   const pacienteEliminar= (id) => { 
     Alert.alert(
       'Deseas Eliminar Paciente',
@@ -70,13 +72,17 @@ const App = () => {
                        }
           />
       }
-      <Formulario 
-        modalVisible={ modalVisible }
-        setModalVisible={ setModalVisible }
-        setPacientes={ setPacientes }
-        paciente={ paciente }
-        setPaciente={ setPaciente }
-      />
+
+      {
+        modalVisible && (
+          <Formulario 
+            cerrarModal={ cerrarModal }
+            setPacientes={ setPacientes }
+            paciente={ paciente }
+            setPaciente={ setPaciente }
+          />
+        )
+      }
 
       <Modal 
         visible={ modalPaciente }
